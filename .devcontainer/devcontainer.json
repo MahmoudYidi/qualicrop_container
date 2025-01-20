@@ -2,7 +2,7 @@
     "name": "qualicrop_container",
     "build": {
         "dockerfile": "Dockerfile",
-        "context": "."
+        "context": ".."
 
     },
     "customizations": {
@@ -16,6 +16,8 @@
 			]
 		}
 	},
+    
+    "workspaceFolder": "/workspace/src",
 
     "runArgs": [
         "--net=host",

@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git wget curl unzip build-essential \
     libopencv-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Install Python dependencies
 RUN pip install --no-cache-dir \
     numpy scipy pandas matplotlib seaborn \
@@ -20,14 +21,14 @@ RUN pip install --no-cache-dir \
     tensorflow \
     h5py
 
-# Copy the test script into the container
-COPY ../Trials/verify.py /workspace/verify.py
+# Copy verify script into the container
+COPY ../trials/verify.py /workspace/verify.py
 
-# Run the test script to validate installations
-RUN python3 /workspace/verify.py
-
-# Set the default working directorytest_installation
+# Default working directory
 WORKDIR /workspace
+
+# Run verify script during build to validate installation
+RUN python3 verify.py
 
 # Default command
 CMD ["/bin/bash"]

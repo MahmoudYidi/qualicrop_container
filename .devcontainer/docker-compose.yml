@@ -2,8 +2,8 @@ version: "3.8"
 services:
   qualicrop:
     build:
-      context: .
-      dockerfile: Dockerfile  
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
@@ -11,6 +11,7 @@ services:
       - /run/udev:/run/udev:ro
       - /dev/input:/dev/input
       - /dev:/dev
+      - ../src:/workspace/src
     environment:
       - DEBIAN_FRONTEND=noninteractive
     deploy:
