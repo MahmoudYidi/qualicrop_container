@@ -20,10 +20,14 @@ RUN pip install --no-cache-dir \
     tensorflow \
     h5py
 
-# Set the default working directory
-#WORKDIR /workspace
+# Copy the test script into the container
+COPY ../Trials/verify.py /workspace/verify.py
 
-#ENV NVIDIA_DRIVER_CAPABILITIES=all
+# Run the test script to validate installations
+RUN python3 /workspace/verify.py
+
+# Set the default working directorytest_installation
+WORKDIR /workspace
 
 # Default command
 CMD ["/bin/bash"]
