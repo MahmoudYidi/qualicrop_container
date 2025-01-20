@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  qualicrop:
+    build:
+      context: .
+      dockerfile: Dockerfile  
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /media:/media:rw
+      - /run/udev:/run/udev:ro
+      - /dev/input:/dev/input
+      - /dev:/dev
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu] 
+    devices:
+      - /dev:/dev
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    network_mode: "host" 
+    privileged: true
+    
