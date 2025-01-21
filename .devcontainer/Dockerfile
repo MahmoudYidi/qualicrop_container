@@ -30,7 +30,7 @@ RUN mkdir -p /workspace/packages && \
     #package 1 && \
     git clone https://github.com/MahmoudYidi/Anom_GUI.git
 
-    # Make the scripts executable
+    
 
 
 #RUN chmod +x /tmp/*.sh
