@@ -19,6 +19,7 @@ RUN pip install --no-cache-dir --verbose\
     scikit-learn spectral opencv-python plotly \
     pytorch-lightning torchvision \
     tensorflow \
+    scikit-image \
     h5py
 # Install PyTorch (with CUDA support)
 RUN pip3 install torch torchvision torchaudio
@@ -29,6 +30,14 @@ RUN mkdir -p /workspace/packages && \
     #package 1 && \
     git clone https://github.com/MahmoudYidi/Anom_GUI.git
 
+    # Make the scripts executable
+
+
+#RUN chmod +x /tmp/*.sh
+
+#GUI
+#COPY ../.devcontainer/GUI.sh /usr/local/bin/gui_support.sh
+#RUN chmod +x /usr/local/bin/gui_support.sh
 # Copy verify script into the container
 COPY ../src/verify.py /workspace/src/verify.py
 
@@ -36,4 +45,5 @@ COPY ../src/verify.py /workspace/src/verify.py
 WORKDIR /workspace
 
 # Default command
+#CMD ["/usr/local/bin/gui_support.sh", "/bin/bash"]
 CMD ["/bin/bash"]
