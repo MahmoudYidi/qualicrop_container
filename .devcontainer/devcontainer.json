@@ -17,7 +17,7 @@
 		}
 	},
     
-    "workspaceFolder": "/workspace/src",
+    "workspaceFolder": "/workspace",
 
     "runArgs": [
         "--net=host",

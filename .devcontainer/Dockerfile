@@ -23,11 +23,17 @@ RUN pip install --no-cache-dir --verbose\
 # Install PyTorch (with CUDA support)
 RUN pip3 install torch torchvision torchaudio
 
+# Create a directory for additional packages and clone repositories
+RUN mkdir -p /workspace/packages && \
+    cd /workspace/packages && \
+    #package 1 && \
+    git clone https://github.com/MahmoudYidi/Anom_GUI.git
+
 # Copy verify script into the container
 COPY ../src/verify.py /workspace/src/verify.py
 
 
-WORKDIR /workspace/src
+WORKDIR /workspace
 
 # Default command
 CMD ["/bin/bash"]
