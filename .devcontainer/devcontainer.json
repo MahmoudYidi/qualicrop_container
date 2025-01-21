@@ -21,6 +21,7 @@
 
     "runArgs": [
         "--net=host",
-        "--privileged"
+        "--privileged",
+        "--runtime=nvidia"
     ]
 }

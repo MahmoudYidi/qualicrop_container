@@ -1,5 +1,5 @@
 # Base image with PyTorch, CUDA, and cuDNN
-FROM pytorch/pytorch:2.4.0-cuda12.4-cudnn9-devel
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -14,21 +14,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-RUN pip install --no-cache-dir \
+RUN pip install --no-cache-dir --verbose\
     numpy scipy pandas matplotlib seaborn \
-    scikit-learn spectral opencv-python-headless plotly \
+    scikit-learn spectral opencv-python plotly \
     pytorch-lightning torchvision \
     tensorflow \
     h5py
+# Install PyTorch (with CUDA support)
+RUN pip3 install torch torchvision torchaudio
 
 # Copy verify script into the container
-COPY ../trials/verify.py /workspace/verify.py
+COPY ../src/verify.py /workspace/src/verify.py
 
-# Default working directory
-WORKDIR /workspace
 
-# Run verify script during build to validate installation
-RUN python3 verify.py
+WORKDIR /workspace/src
 
 # Default command
 CMD ["/bin/bash"]
