@@ -17,8 +17,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir --verbose\
     numpy scipy pandas matplotlib seaborn \
     scikit-learn spectral opencv-python plotly \
-    pytorch-lightning torchvision \
-    tensorflow \
     scikit-image \
     h5py
 # Install PyTorch (with CUDA support)
